@@ -1,12 +1,13 @@
 {
   "name": "bazariobd",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "npx prisma generate && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "npx prisma generate"
     
   },
   "dependencies": {
@@ -30,6 +31,7 @@
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/ws": "^8.18.1",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "prisma": "^6.16.3"
   }
 }
