@@ -6,8 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "npx prisma generate && next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "npx prisma generate"
+    "lint": "next lint"
+    
   },
   "dependencies": {
     "@clerk/nextjs": "^6.33.0",
