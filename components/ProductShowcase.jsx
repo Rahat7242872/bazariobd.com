@@ -22,12 +22,12 @@ const JustForYou = () => {
 
       {/* Product Grid */}
       <motion.div
-        className="mt-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 px-4 md:px-10 max-w-7xl mx-auto"
+        className="mt-8 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 xl:gap-5 sm:gap-6 md:gap-8 px-6 sm:px-6 md:px-10 max-w-7xl mx-auto justify-items-center"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
         variants={{
-          hidden: { opacity: 0, y: 40 },
+          hidden: { opacity: 0, y: 30 },
           visible: {
             opacity: 1,
             y: 0,
@@ -42,6 +42,8 @@ const JustForYou = () => {
               hidden: { opacity: 0, scale: 0.9 },
               visible: { opacity: 1, scale: 1 },
             }}
+            whileHover={{ scale: 1.05 }}
+            className="w-full max-w-xs"
           >
             <ProductCard product={product} />
           </motion.div>
