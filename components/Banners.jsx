@@ -1,7 +1,7 @@
-"use client";
+'use client';
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import {banners} from "../assets/assets"; // তোমার asset file
+import { banners } from "../assets/assets"; // তোমার asset file
 
 export default function BannerImage() {
   const [current, setCurrent] = useState(0);
@@ -17,8 +17,9 @@ export default function BannerImage() {
   return (
     <div className="w-full bg-gradient-to-b from-gray-50 to-white py-8 px-4 md:px-10">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* 🟢 Left side: Large Banner */}
-        <div className="relative col-span-2 rounded-2xl overflow-hidden shadow-xl group">
+        
+        {/* 🟢 Large Banner */}
+        <div className="relative md:col-span-2 rounded-2xl overflow-hidden shadow-xl group h-64 sm:h-72 md:h-[400px]">
           <Image
             src={banners[current].image}
             alt={banners[current].title}
@@ -27,25 +28,27 @@ export default function BannerImage() {
           />
           <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-500"></div>
 
-          <div className="absolute bottom-8 left-8 text-white z-10">
-            <h2 className="text-2xl md:text-3xl font-bold">
+          <div className="absolute bottom-5 left-5 md:bottom-8 md:left-8 text-white z-10">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold">
               {banners[current].title}
             </h2>
-            <p className="text-lg mt-2">{banners[current].discount}</p>
-            <button className="mt-4 bg-white text-black px-5 py-2 rounded-lg font-semibold hover:bg-gray-200 transition-all">
+            <p className="text-sm sm:text-lg mt-1 sm:mt-2">
+              {banners[current].discount}
+            </p>
+            <button className="mt-2 sm:mt-4 bg-white text-black px-4 sm:px-5 py-1.5 sm:py-2 rounded-lg font-semibold hover:bg-gray-200 transition-all text-sm sm:text-base">
               Shop Now
             </button>
           </div>
         </div>
 
         {/* 🟠 Right side: Two Small Banners */}
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-4 sm:gap-6 mt-4 md:mt-0">
           {banners.slice(1, 3).map((item, i) => (
             <div
               key={i}
-              className={`${item.color} relative rounded-2xl overflow-hidden shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-500`}
+              className={`${item.color} relative rounded-2xl overflow-hidden shadow-md hover:shadow-lg hover:scale-[1.02] transition-all duration-500 h-32 sm:h-40 md:h-48`}
             >
-              <div className="relative w-full h-40 md:h-48">
+              <div className="relative w-full h-full">
                 <Image
                   src={item.image}
                   alt={item.title}
@@ -54,9 +57,9 @@ export default function BannerImage() {
                 />
               </div>
               <div className="absolute inset-0 bg-black/25"></div>
-              <div className="absolute bottom-5 left-5 text-white">
-                <h3 className="text-lg font-bold">{item.title}</h3>
-                <p className="text-sm">{item.discount}</p>
+              <div className="absolute bottom-3 sm:bottom-5 left-3 sm:left-5 text-white">
+                <h3 className="text-sm sm:text-lg font-bold">{item.title}</h3>
+                <p className="text-xs sm:text-sm">{item.discount}</p>
               </div>
             </div>
           ))}
