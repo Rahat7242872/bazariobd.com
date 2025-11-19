@@ -1,6 +1,13 @@
 import banner1 from "./banner1.jpg"
 import banner2 from "./banner2.jpg"
 import banner3 from "./banner3.jpg"
+import electronic from "./electronic.png"
+import fashion from "./fashion.png"
+import beauty from "./beauty.png"
+import health from "./health.png"
+import sports from "./sports.png"
+import toys from "./toys.png"
+
 import gs_logo from "./gs_logo.jpg"
 import happy_store from "./happy_store.webp"
 import upload_area from "./upload_area.svg"
@@ -10,6 +17,7 @@ import hero_product_img2 from "./hero_product_img2.png"
 import product_img1 from "./product_img1.png"
 import product_img2 from "./product_img2.png"
 import product_img3 from "./product_img3.png"
+
 import product_img4 from "./product_img4.png"
 import product_img5 from "./product_img5.png"
 import product_img6 from "./product_img6.png"
@@ -41,6 +49,40 @@ export const dummyRatingsData = [
     { id: "rat_4", rating: 5.0, review: "This product is great. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.", user: { name: 'Kristin Watson', image: profile_pic1 }, productId: "prod_4", createdAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)', updatedAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)', product: { name: 'Bluetooth Speakers', category:'Electronics', id:'prod_1'} },
     { id: "rat_5", rating: 4.3, review: "Overall, I'm very happy with this purchase. It works as described and feels durable. The only reason I didn't give it five stars is because of a small issue (such as setup taking a bit longer than expected, or packaging being slightly damaged). Still, highly recommend it for anyone looking for a reliable option.", user: { name: 'Jenny Wilson', image: profile_pic2 }, productId: "prod_5", createdAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)', updatedAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)', product: { name: 'Bluetooth Speakers', category:'Electronics', id:'prod_1'} },
     { id: "rat_6", rating: 5.0, review: "This product is great. I love it!  You made it so simple. My new site is so much faster and easier to work with than my old site.", user: { name: 'Bessie Cooper', image: profile_pic3 }, productId: "prod_6", createdAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)', updatedAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)', product: { name: 'Bluetooth Speakers', category:'Electronics', id:'prod_1'} },
+]
+export const banners = [
+  {
+    title: "Business Booster Deals",
+    discount: "15% Off",
+    image: hero_model_img,
+    color: "bg-blue-800",
+  },
+  {
+    title: "Travel & Outdoor Gear",
+    discount: "15% Off",
+    image: hero_product_img1,
+    color: "bg-sky-500",
+  },
+  {
+    title: "Mobile Accessories",
+    discount: "20% Off",
+    image: hero_product_img2,
+    color: "bg-indigo-700",
+  },
+  {
+    title: "Musical Vibes",
+    discount: "30% Off",
+    image: product_img9,
+    color: "bg-orange-500",
+  }
+]
+export const categoryList =[
+    { id: 1, name: "Electronics", img:electronic },
+      { id: 2, name: "Fashion", img: health },
+      { id: 3, name: "Beauty",img : beauty},
+      { id: 4, name: "Health", img:fashion },
+      { id: 5, name: "Sports", img:toys },
+      { id: 6, name: "Toys", img: sports},
 ]
 
 export const dummyStoreData = {
