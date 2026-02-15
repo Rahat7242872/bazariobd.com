@@ -10,7 +10,7 @@ import {
   ShoppingCart,
   Store,
   StoreIcon,
-  TicketPercentIcon
+  TicketPercentIcon,
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -27,6 +27,7 @@ const AdminSidebar = () => {
     { name: 'Products', href: '/admin/products', icon: ShoppingCart },
     { name: 'Customers', href: '/admin/customer', icon: PersonStandingIcon },
     { name: 'Categories', href: '/admin/categoris', icon: ListIcon },
+     { name: 'Carousel', href: '/admin/carousel', icon: ListIcon },
     { name: 'Stores', href: '/admin/stores', icon: StoreIcon },
     { name: 'Store Management', href: '/admin/stores/manage', icon: Store },
     { name: 'Reports', href: '/admin/reports', icon: Store },

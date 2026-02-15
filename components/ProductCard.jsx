@@ -1,13 +1,18 @@
 "use client";
-import { StarIcon } from "lucide-react";
+import { StarIcon, ShoppingCartIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { addToCart } from "@/lib/features/cart/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 
 const ProductCard = ({ product }) => {
   const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || "$";
+  const cart = useSelector((state) => state.cart.cartItems);
+  const dispatch = useDispatch();
+  const router = useRouter();
 
-  // Safely calculate rating
   const rating =
     product.rating && product.rating.length > 0
       ? Math.round(
@@ -16,36 +21,70 @@ const ProductCard = ({ product }) => {
         )
       : 0;
 
+  const productId = product.id;
+
+  const addToCartHandler = () => {
+    dispatch(addToCart({ productId }));
+  };
+
   return (
-    <Link
-      href={`/product/${product.id}`}
-      className="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col justify-between 
-                 w-[150px] sm:w-[180px] md:w-[200px] lg:w-[250px]"
-    >
+    <div className="relative group bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden 
+                    w-[150px] sm:w-[180px] md:w-[200px] lg:w-[250px]">
+
       {/* Product Image */}
       <div className="relative w-full h-36 sm:h-44 md:h-52 lg:h-64 bg-gray-100 overflow-hidden">
-        <Image
-          src={product.images[0]}
-          alt={product.name}
-          fill
-          className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"
-          sizes="(max-width: 640px) 150px,
-                 (max-width: 768px) 180px,
-                 (max-width: 1024px) 200px,
-                 250px"
-        />
+        <Link href={`/product/${product.id}`}>
+          <Image
+            src={product.images[0]}
+            alt={product.name}
+            fill
+            className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"
+          />
+        </Link>
+
+        {/* ⭐ Mobile: Small Add-to-cart Icon (Always visible on mobile) */}
+        <button
+          onClick={() => (!cart[productId] ? addToCartHandler() : router.push("/cart"))}
+          className="
+            sm:hidden    /* Mobile only */
+            absolute bottom-3 left-1/2 -translate-x-1/2 
+            opacity-0 group-hover:opacity-100 group-hover:translate-y-0
+            translate-y-4 transition-all duration-300 
+            bg-green-600 hover:bg-green-700 
+            text-white text-sm px-4 py-2 rounded-full 
+            items-center gap-1 shadow-lg
+          "
+        >
+          <ShoppingCartIcon size={18} />
+        </button>
+
+        {/* ⭐ Desktop: Full Add to Cart button (shows on hover) */}
+        <button
+          onClick={() => (!cart[productId] ? addToCartHandler() : router.push("/cart"))}
+          className="
+            hidden sm:flex   /* Desktop only */
+            absolute bottom-3 left-1/2 -translate-x-1/2 
+            opacity-0 group-hover:opacity-100 group-hover:translate-y-0
+            translate-y-4 transition-all duration-300 
+            bg-green-600 hover:bg-green-700 
+            text-white text-sm px-4 py-2 rounded-full 
+            items-center gap-1 shadow-lg
+          "
+        >
+          <ShoppingCartIcon size={16} />
+          Add to Cart
+        </button>
       </div>
 
       {/* Product Info */}
-      <div className="p-2 sm:p-3 flex flex-col justify-between flex-grow">
-        {/* Product Name */}
-        <h3 className="text-[12px] sm:text-sm md:text-base lg:text-lg font-semibold text-gray-800 group-hover:text-green-600 line-clamp-2">
-          {product.name}
-        </h3>
+      <div className="p-2 sm:p-3 flex flex-col flex-grow">
+        <Link href={`/product/${product.id}`}>
+          <h3 className="text-[12px] sm:text-sm md:text-base lg:text-lg font-semibold text-gray-800 group-hover:text-green-600 line-clamp-2">
+            {product.name}
+          </h3>
+        </Link>
 
-        {/* Rating + Price */}
         <div className="flex items-center justify-between mt-1 sm:mt-2">
-          {/* Rating */}
           <div className="flex items-center gap-[2px] sm:gap-1">
             {Array(5)
               .fill("")
@@ -61,14 +100,13 @@ const ProductCard = ({ product }) => {
               ))}
           </div>
 
-          {/* Price */}
           <p className="text-xs sm:text-sm md:text-base lg:text-lg font-bold text-gray-900">
             {currency}
             {product.price}
           </p>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

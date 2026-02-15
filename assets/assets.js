@@ -410,6 +410,7 @@ export const dummyAdminDashboardData = {
     "stores": 2,
     "products": 12,
     "revenue": "959.10",
+    "sales": "5000",
     "allOrders": [
         { "createdAt": "2025-08-20T08:46:58.239Z", "total": 145.6 },
         { "createdAt": "2025-08-22T08:46:21.818Z", "total": 97.2 },
@@ -434,5 +435,13 @@ export const dummyStoreDashboardData = {
     "ratings": dummyRatingsData,
     "totalOrders": 2,
     "totalEarnings": 636,
-    "totalProducts": 5
+    "totalProducts": 5,
+     
 }
+export const demoCategorySales = [
+  { category: "Electronics", sales: 450 },
+  { category: "Fashion", sales: 320 },
+  { category: "Home & Kitchen", sales: 280 },
+  { category: "Beauty", sales: 150 },
+  { category: "Toys", sales: 90 },
+];

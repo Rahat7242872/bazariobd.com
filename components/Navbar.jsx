@@ -73,7 +73,7 @@ export default function Navbar() {
         {/* 🔹 Search Bar */}
         <form
           onSubmit={handleSearch}
-          className="flex items-center bg-white rounded-md mx-3 mb-3 overflow-hidden"
+          className="flex items-center text-green-600 shadow-2xl rounded-md mx-3 mb-3 overflow-hidden"
         >
           <div className="p-2 text-green-600">
             <Camera size={20} />

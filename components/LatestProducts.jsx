@@ -5,13 +5,14 @@ import { useSelector } from "react-redux";
 import Title from "./Title";
 import ProductCard from "./ProductCard";
 
-const LatestProducts = () => {
+const BestSellingProducts = () => {
   const displayQuantity = 8;
   const products = useSelector((state) => state.product.list);
 
-  const latest = products
+  // Sort by best selling (sold / salesCount)
+  const bestSelling = products
     .slice()
-    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .sort((a, b) => (b.sold || b.salesCount || 0) - (a.sold || a.salesCount || 0))
     .slice(0, displayQuantity);
 
   return (
@@ -19,12 +20,12 @@ const LatestProducts = () => {
       {/* Section Title */}
       <div className="px-4 max-w-2xl mx-auto">
         <Title
-          title="🆕 Latest Products"
+          title="🔥 Best Selling Products"
           description={`Showing ${
-            latest.length < displayQuantity ? latest.length : displayQuantity
+            bestSelling.length < displayQuantity ? bestSelling.length : displayQuantity
           } of ${products.length} products`}
           href="/shop"
-          className="text-sm sm:text-base md:text-lg" // Title size responsive
+          className="text-sm sm:text-base md:text-lg"
         />
       </div>
 
@@ -39,7 +40,7 @@ const LatestProducts = () => {
             ease: "linear",
           }}
         >
-          {[...latest, ...latest].map((product, index) => (
+          {[...bestSelling, ...bestSelling].map((product, index) => (
             <motion.div
               key={index}
               whileHover={{ scale: 1.05 }}
@@ -50,7 +51,7 @@ const LatestProducts = () => {
           ))}
         </motion.div>
 
-        {/* Fade effect for smooth edges */}
+        {/* Fade edges */}
         <div className="absolute top-0 left-0 h-full w-12 sm:w-24 bg-gradient-to-r from-white to-transparent pointer-events-none"></div>
         <div className="absolute top-0 right-0 h-full w-12 sm:w-24 bg-gradient-to-l from-white to-transparent pointer-events-none"></div>
       </div>
@@ -58,4 +59,4 @@ const LatestProducts = () => {
   );
 };
 
-export default LatestProducts;
+export default BestSellingProducts;

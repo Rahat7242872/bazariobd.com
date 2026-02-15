@@ -4,6 +4,8 @@ import Loading from "@/components/Loading"
 import OrdersAreaChart from "@/components/OrdersAreaChart"
 import { CircleDollarSignIcon, ShoppingBasketIcon, StoreIcon, TagsIcon } from "lucide-react"
 import { useEffect, useState } from "react"
+import CategoryPiaChart from "@/components/CategoryPieChart"
+import { demoCategorySales } from "@/assets/assets";
 
 export default function AdminDashboard() {
 
@@ -20,6 +22,7 @@ export default function AdminDashboard() {
 
     const dashboardCardsData = [
         { title: 'Total Products', value: dashboardData.products, icon: ShoppingBasketIcon },
+        { title: 'Total Sales', value: currency + dashboardData.sales, icon: CircleDollarSignIcon },
         { title: 'Total Revenue', value: currency + dashboardData.revenue, icon: CircleDollarSignIcon },
         { title: 'Total Orders', value: dashboardData.orders, icon: TagsIcon },
         { title: 'Total Stores', value: dashboardData.stores, icon: StoreIcon },
@@ -41,7 +44,7 @@ export default function AdminDashboard() {
             <h1 className="text-2xl">Admin <span className="text-slate-800 font-medium">Dashboard</span></h1>
 
             {/* Cards */}
-            <div className="flex flex-wrap gap-5 my-10 mt-4">
+            <div className="flex flex-wrap gap-5 my-10 mt-4 hover:shadow-lime-600">
                 {
                     dashboardCardsData.map((card, index) => (
                         <div key={index} className="flex items-center gap-10 border border-slate-200 p-3 px-6 rounded-lg">
@@ -55,8 +58,22 @@ export default function AdminDashboard() {
                 }
             </div>
 
-            {/* Area Chart */}
-            <OrdersAreaChart allOrders={dashboardData.allOrders} />
+            {/* Area Chart + Pie Chart Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-10">
+                {/* Area Chart */}
+                <div className="w-full bg-white p-5 rounded-2xl shadow">
+                    <OrdersAreaChart allOrders={dashboardData.allOrders} />
+                </div>
+
+                {/* Pie Chart */}
+                <div className="w-full bg-white p-5 rounded-2xl shadow flex justify-center">
+                    <div className="w-[260px] sm:w-[300px] md:w-[340px]">
+                        <CategoryPiaChart demoCategorySales={demoCategorySales} />
+                    </div>
+                </div>
+                
+
+            </div>
         </div>
     )
 }
